@@ -101,7 +101,6 @@ function useAutoAdd(x) {
 wue({
   data: {},
   setup(options) {
-    // console.log(ctx)
     const b = useAutoAdd(2)
 
     onShow(() => {

@@ -11,7 +11,6 @@ export default (config) => {
       // TODO: 未支持原始数据的getter setter
       const configProxy = new Proxy(page.data, {
         get(target, key) {
-          console.log('get', target, key)
           return target[key]
         },
         set(target, key, value) {
@@ -19,10 +18,9 @@ export default (config) => {
             value.__dep__.append((v) => {
               setData(page, { [key]: v })
             })
-            setData(page, { [key]: isRef(value) ? value.value : value })
-          } else {
-            setData(page, { [key]: value })
           }
+          
+          setData(page, { [key]: isRef(value) ? value.value : value })
           return true
         },
       })

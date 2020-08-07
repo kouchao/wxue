@@ -14,7 +14,6 @@ export function resolveHooks(config) {
   hooks.forEach((name) => {
     let hook = config[name]
     config[name] = function (options) {
-      console.log(name, this)
       callHooks(name, options, this)
       hook(options)
     }
