@@ -42,7 +42,7 @@ export function initHooks(ctx) {
 
 function genHooks(name) {
   return function (cb) {
-    page.__hooks__['onShow'].push(cb)
+    page.__hooks__[name].push(cb)
   }
 }
 

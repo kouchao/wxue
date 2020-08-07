@@ -11,16 +11,15 @@ export default (refData) => {
   refData.__dep__ = dep
   refData.__isReactive__ = true
   disableEnumerable(refData, ['__dep__', '__isReactive__'])
-  const configProxy = new Proxy(refData, {
+  const observed = new Proxy(refData, {
     get(target, key) {
       return target[key]
     },
     set(target, key, value) {
       target[key] = value
-      console.log('Reactive set', target, key, value)
-      dep.depend(value)
+      dep.depend(target)
       return true
     },
   })
-  return configProxy
+  return observed
 }

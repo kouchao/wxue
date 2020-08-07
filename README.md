@@ -1,13 +1,99 @@
-跟vue的composition-api类似，小程序端的逻辑复用的解决方案。
+> 跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。
+
+## 介绍
+
+由于参照`vue`，暂且叫他`wue`吧，目前的方向还没有定。提供了`vue`的`composition-api`类似的用法。
+
+## 文档
+
+### wue
+```javascript
+wue(options)
+```
+
+`options`中需要配置`setup`，并且`setup`是一个函数
+
+### setup
+返回一个对象，可包含对象或者是函数，函数将会挂载到`this`中，对象将挂载到`data`中
+### reactive
+
+返回对象的响应数据。
+
+```javascript
+import { wue, reactive } from 'wue'
+
+wue({
+  setup(options) {
+    const test = reactive({
+      x: 1,
+      y: 2,
+    })
+
+    setInterval(() => {
+      test.x++
+    }, 1000)
+
+    return {
+      test,
+    }
+  },
+})
+```
+
+### ref
+
+接受一个内部值并返回一个反应性且可变的`ref`对象。`ref`对象具有`.value`指向内部值的单个属性。
+
+```javascript
+import { wue, ref } from 'wue'
+
+wue({
+  setup(options) {
+    const x = ref(1)
+
+    setInterval(() => {
+      x.value++
+    }, 1000)
+
+    return {
+      x,
+    }
+  },
+})
+```
+
+### hooks
+支持小程序的所有生命周期 `onLoad`,`onReady`,`onShow`,`onHide`,`onUnload`,`onPullDownRefresh`,`onReachBottom`,`onShareAppMessage`
+
+```javascript
+import { wue, onShow } from 'wue'
+
+wue({
+  setup(options) {
+    onShow(() => {
+      console.log('onShow form hooks')
+    })
+  },
+})
+```
+### setData(page, data)
+优化的`setData`，多次调用将合并成一次执行
+
+### nextTick(cb)
+`setData`是异步的，在`setData`执行后完成后 将会执行`nextTick`
+
+### 其他 
+对`this.data`的set进行了劫持，会调用`setData`
+## 示例
+
 ```javascript
 // pages/test/index.js
-import { wue, nextTick, ref, onShow } from '../../wue/index'
+import { wue, nextTick, ref, onShow } from 'wue'
 
 function useAutoAdd(x) {
   const b = ref(x)
   setInterval(() => {
     b.value++
-    console.log(b.value)
   }, 1000)
   return b
 }
@@ -19,7 +105,7 @@ wue({
     const b = useAutoAdd(2)
 
     onShow(() => {
-      console.log('onShow for hooks', this)
+      console.log('onShow form hooks', this)
     })
 
     function getXx() {
@@ -29,7 +115,7 @@ wue({
     return {
       c: b,
       getXx,
-      test
+      test,
     }
   },
   onLoad: function (options) {

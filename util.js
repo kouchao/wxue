@@ -1,3 +1,5 @@
+export function noop() {}
+
 // 判断是否是ref对象
 export function isRef(obj) {
   return typeof obj == 'object' && obj.__isRef__
@@ -9,7 +11,6 @@ export function isReactive(obj) {
 }
 
 
-export function noop() {}
 
 // 变为不可枚举
 export function disableEnumerable(obj, keys){
@@ -18,4 +19,9 @@ export function disableEnumerable(obj, keys){
       enumerable: false
     })
   })
+}
+
+// 判断函数
+export function isFun(fn){
+  return fn && typeof fn === 'function'
 }
