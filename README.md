@@ -7,6 +7,7 @@
 ## 文档
 
 ### wue
+
 ```javascript
 wue(options)
 ```
@@ -14,7 +15,9 @@ wue(options)
 `options`中需要配置`setup`，并且`setup`是一个函数
 
 ### setup
+
 返回一个对象，可包含对象或者是函数，函数将会挂载到`this`中，对象将挂载到`data`中
+
 ### reactive
 
 返回对象的响应数据。
@@ -62,7 +65,38 @@ wue({
 })
 ```
 
+#### unref
+
+如果参数是 ref，则返回内部值，否则返回参数本身。
+
+#### toRef
+
+可用于 ref 在源反应对象上为属性创建
+
+```javascript
+const test = reactive({
+  x: 1,
+  y: 2,
+})
+const x = toRef(test, 'x')
+return { x }
+```
+
+#### toRefs
+
+将反应对象转换为普通对象，其中所得对象的每个属性都 ref 指向原始对象的相应属性,可用于解构
+
+```javascript
+const test = reactive({
+  x: 1,
+  y: 2,
+})
+const { x } = toRefs(test)
+return { x }
+```
+
 ### hooks
+
 支持小程序的所有生命周期 `onLoad`,`onReady`,`onShow`,`onHide`,`onUnload`,`onPullDownRefresh`,`onReachBottom`,`onShareAppMessage`
 
 ```javascript
@@ -76,14 +110,19 @@ wue({
   },
 })
 ```
+
 ### setData(page, data)
+
 优化的`setData`，多次调用将合并成一次执行
 
 ### nextTick(cb)
+
 `setData`是异步的，在`setData`执行后完成后 将会执行`nextTick`
 
-### 其他 
-对`this.data`的set进行了劫持，会调用`setData`
+### 其他
+
+对`this.data`的 set 进行了劫持，会调用`setData`
+
 ## 示例
 
 ```javascript
