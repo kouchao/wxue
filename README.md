@@ -95,6 +95,15 @@ const { x } = toRefs(test)
 return { x }
 ```
 
+### computed
+
+计算属性 返回的值返回一个不变的反应性 ref 对象。
+
+```javascript
+const computedX = computed(() => x.value + 1)
+return { computedX }
+```
+
 ### hooks
 
 支持小程序的所有生命周期 `onLoad`,`onReady`,`onShow`,`onHide`,`onUnload`,`onPullDownRefresh`,`onReachBottom`,`onShareAppMessage`

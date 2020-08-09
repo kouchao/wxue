@@ -1,4 +1,5 @@
 import {isRef} from './util'
+import Queue from './queue'
 export default class Dep{
   sub = []
   append(cb){
@@ -10,3 +11,5 @@ export default class Dep{
     }
   }
 }
+
+Dep.activeFun = false
