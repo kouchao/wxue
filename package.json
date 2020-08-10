@@ -1,0 +1,20 @@
+{
+  "name": "wxue",
+  "version": "1.0.0",
+  "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouchao/weapp-composition.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kouchao/weapp-composition/issues"
+  },
+  "homepage": "https://github.com/kouchao/weapp-composition#readme"
+}

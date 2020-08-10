@@ -2,14 +2,14 @@
 
 ## 介绍
 
-由于参照`vue`，暂且叫他`wue`吧，目前的方向还没有定。提供了`vue`的`composition-api`类似的用法。
+由于参照`vue`，暂且叫他`wxue`吧，目前的方向还没有定。提供了`vue`的`composition-api`类似的用法。
 
 ## 文档
 
-### wue
+### wxue
 
 ```javascript
-wue(options)
+wxue(options)
 ```
 
 `options`中需要配置`setup`，并且`setup`是一个函数
@@ -23,9 +23,9 @@ wue(options)
 返回对象的响应数据。
 
 ```javascript
-import { wue, reactive } from 'wue'
+import { wxue, reactive } from 'wxue'
 
-wue({
+wxue({
   setup(options) {
     const test = reactive({
       x: 1,
@@ -48,9 +48,9 @@ wue({
 接受一个内部值并返回一个反应性且可变的`ref`对象。`ref`对象具有`.value`指向内部值的单个属性。
 
 ```javascript
-import { wue, ref } from 'wue'
+import { wxue, ref } from 'wxue'
 
-wue({
+wxue({
   setup(options) {
     const x = ref(1)
 
@@ -144,9 +144,9 @@ stop2()
 支持小程序的所有生命周期 `onLoad`,`onReady`,`onShow`,`onHide`,`onUnload`,`onPullDownRefresh`,`onReachBottom`,`onShareAppMessage`
 
 ```javascript
-import { wue, onShow } from 'wue'
+import { wxue, onShow } from 'wxue'
 
-wue({
+wxue({
   setup(options) {
     onShow(() => {
       console.log('onShow form hooks')
@@ -176,7 +176,7 @@ nextTick(() => {})
 
 ```javascript
 // pages/test/index.js
-import { wue, nextTick, ref, onShow } from 'wue'
+import { wxue, nextTick, ref, onShow } from 'wxue'
 
 function useAutoAdd(x) {
   const b = ref(x)
@@ -186,7 +186,7 @@ function useAutoAdd(x) {
   return b
 }
 
-wue({
+wxue({
   data: {},
   setup(options) {
     const b = useAutoAdd(2)

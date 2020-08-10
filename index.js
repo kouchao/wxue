@@ -5,5 +5,5 @@ export * from './watch'
 export * from './setData'
 export * from './hooks'
 
-export const wue = core
+export const wxue = core
 export const reactive = re
