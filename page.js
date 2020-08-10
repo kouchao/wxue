@@ -1,5 +1,5 @@
 class WxPage {
-// constructor (config) {}
+  // constructor (config) {}
 
   async render () {
 
