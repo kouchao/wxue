@@ -1,8 +1,8 @@
 {
   "name": "wxue",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext .js ./",
     "fix": "eslint --ext .js ./ --fix"
