@@ -8,4 +8,7 @@ export default class Queue {
       cb(this.queue.shift())
     }
   }
+  isNull(){
+    return this.queue.length === 0
+  }
 }

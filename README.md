@@ -106,7 +106,8 @@ return { computedX }
 
 ### watchEffect
 
-它会在反应性地跟踪其依赖关系时立即运行一个函数，并在依赖关系发生更改时重新运行它。stop停止监听
+它会在反应性地跟踪其依赖关系时立即运行一个函数，并在依赖关系发生更改时重新运行它。stop 停止监听
+
 ```javascript
 const count = ref(0)
 const stop = watchEffect(() => console.log(count.value))
@@ -120,7 +121,7 @@ setTimeout(() => {
 
 ### watch
 
-观察者数据源可以是返回值的 getter 函数，也可以直接是 ref, stop停止监听
+观察者数据源可以是返回值的 getter 函数，也可以直接是 ref, stop 停止监听
 
 ```javascript
 const count = ref(0)
@@ -128,9 +129,12 @@ const state = reactive({ count: 0 })
 const stop = watch(ref, (count, prevCount) => {
   /* ... */
 })
-const stop2 = watch(() => state.count, (count, prevCount) => {
-  /* ... */
-})
+const stop2 = watch(
+  () => state.count,
+  (count, prevCount) => {
+    /* ... */
+  }
+)
 stop()
 stop2()
 ```
@@ -155,9 +159,14 @@ wue({
 
 优化的`setData`，多次调用将合并成一次执行
 
-### nextTick(cb)
-
-`setData`是异步的，在`setData`执行后完成后 将会执行`nextTick`
+### nextTick()
+`setData`是异步的，在`setData`执行后完成后执行的回调`nextTick`
+```javascript
+// 1 返回Promise
+await nextTick()
+// 2 执行回调
+nextTick(() => {})
+```
 
 ### 其他
 
