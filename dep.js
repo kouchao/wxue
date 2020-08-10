@@ -1,15 +1,24 @@
 import {isRef} from './util'
-import Queue from './queue'
+let uid = 0
 export default class Dep{
   sub = []
-  append(cb){
-    this.sub.push(cb)
+  uid = ++uid
+  append(watcher){
+    this.sub.push(watcher)
+    watcher.append(this)
   }
   depend(value){
     for(let i = 0; i < this.sub.length; i++) {
-      this.sub[i](isRef(value) ? value.value : value)
+      const watcher = this.sub[i]
+      watcher.update(isRef(value) ? value.value : value)
+    }
+  }
+  remove(watch){
+    const index = this.sub.findIndex(w => w === watch)
+    if(~index){
+      this.sub.splice(index, 1)
     }
   }
 }
 
-Dep.activeFun = false
+Dep.activeFun = null

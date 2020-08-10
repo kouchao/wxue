@@ -104,6 +104,37 @@ const computedX = computed(() => x.value + 1)
 return { computedX }
 ```
 
+### watchEffect
+
+它会在反应性地跟踪其依赖关系时立即运行一个函数，并在依赖关系发生更改时重新运行它。stop停止监听
+```javascript
+const count = ref(0)
+const stop = watchEffect(() => console.log(count.value))
+setTimeout(() => {
+  count.value++
+  if (count.value === 100) {
+    stop()
+  }
+}, 1000)
+```
+
+### watch
+
+观察者数据源可以是返回值的 getter 函数，也可以直接是 ref, stop停止监听
+
+```javascript
+const count = ref(0)
+const state = reactive({ count: 0 })
+const stop = watch(ref, (count, prevCount) => {
+  /* ... */
+})
+const stop2 = watch(() => state.count, (count, prevCount) => {
+  /* ... */
+})
+stop()
+stop2()
+```
+
 ### hooks
 
 支持小程序的所有生命周期 `onLoad`,`onReady`,`onShow`,`onHide`,`onUnload`,`onPullDownRefresh`,`onReachBottom`,`onShareAppMessage`
