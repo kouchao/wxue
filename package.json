@@ -4,17 +4,33 @@
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ext .js ./",
+    "fix": "eslint --ext .js ./ --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kouchao/wxue.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wxapp",
+    "wxue",
+    "vue"
+  ],
+  "author": "kouchao",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kouchao/weapp-composition/issues"
   },
-  "homepage": "https://github.com/kouchao/weapp-composition#readme"
+  "homepage": "https://github.com/kouchao/weapp-composition#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-angular": "^9.1.1",
+    "eslint": "^7.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5"
+  }
 }

@@ -6,13 +6,13 @@ const hooks = [
   'onUnload',
   'onPullDownRefresh',
   'onReachBottom',
-  'onShareAppMessage',
+  'onShareAppMessage'
 ]
 let page = null
 // 初始化hooks
-export function resolveHooks(config) {
+export function resolveHooks (config) {
   hooks.forEach((name) => {
-    let hook = config[name]
+    const hook = config[name]
     config[name] = function (options) {
       callHooks(name, options, this)
       hook(options)
@@ -20,7 +20,7 @@ export function resolveHooks(config) {
   })
 }
 
-export function callHooks(name, options, page) {
+export function callHooks (name, options, page) {
   const callbacks = page.__hooks__[name]
   if (callbacks && callbacks.length) {
     for (let i = 0; i < callbacks.length; i++) {
@@ -30,7 +30,7 @@ export function callHooks(name, options, page) {
 }
 
 // 设置page
-export function initHooks(ctx) {
+export function initHooks (ctx) {
   page = ctx
   page.__hooks__ = {} // 用于存放hooks
 
@@ -39,7 +39,7 @@ export function initHooks(ctx) {
   })
 }
 
-function genHooks(name) {
+function genHooks (name) {
   return function (cb) {
     page.__hooks__[name].push(cb)
   }

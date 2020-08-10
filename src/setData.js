@@ -3,25 +3,25 @@ const setDataQueue = new Queue()
 let nextTickResolve = null
 let timer = null
 // 用于异步处理data
-export function setData(page, data) {
+export function setData (page, data) {
   setDataQueue.push(data)
-  if(timer){
+  if (timer) {
     clearTimeout(timer)
     timer = null
   }
   timer = setTimeout(() => {
-    if(setDataQueue.isNull()){
-      return 
+    if (setDataQueue.isNull()) {
+      return
     }
     let d = {}
     setDataQueue.run((item) => {
       d = {
         ...d,
-        ...item,
+        ...item
       }
     })
     page.setData(d, () => {
-      if(nextTickResolve){
+      if (nextTickResolve) {
         nextTickResolve()
         nextTickResolve = null
       }

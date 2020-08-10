@@ -1,8 +1,8 @@
 import Dep from './dep'
-import { isReactive, disableEnumerable, isFun } from './util'
+import { isReactive, disableEnumerable } from './util'
 
 // ref
-export default (refData) => {
+export function reactive (refData) {
   if (isReactive(refData)) {
     return refData
   }
@@ -13,18 +13,18 @@ export default (refData) => {
   refData.__isReactive__ = true
   disableEnumerable(refData, ['__dep__', '__isReactive__'])
   const observed = new Proxy(refData, {
-    get(target, key) {
-      if(Dep.target){
+    get (target, key) {
+      if (Dep.target) {
         const watcher = Dep.target
         dep.append(watcher)
       }
       return target[key]
     },
-    set(target, key, value) {
+    set (target, key, value) {
       target[key] = value
       dep.depend(target)
       return true
-    },
+    }
   })
   return observed
 }

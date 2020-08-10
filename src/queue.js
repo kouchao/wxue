@@ -1,14 +1,19 @@
 export default class Queue {
-  queue = [];
+  constructor () {
+    this.queue = []
+  }
+
   push (item) {
     this.queue.push(item)
   }
-  run(cb){
-    while(this.queue.length) {
+
+  run (cb) {
+    while (this.queue.length) {
       cb(this.queue.shift())
     }
   }
-  isNull(){
+
+  isNull () {
     return this.queue.length === 0
   }
 }
