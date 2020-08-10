@@ -5,6 +5,10 @@
 由于参照`vue`，暂且叫他`wxue`吧，目前的方向还没有定。提供了`vue`的`composition-api`类似的用法。
 
 ## 文档
+### 安装
+```
+npm i wxue -S
+```
 
 ### wxue
 
