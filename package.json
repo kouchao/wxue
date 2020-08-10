@@ -1,9 +1,10 @@
 {
   "name": "wxue",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
-  "main": "src/index.js",
+  "main": "dist/wxue.min.js",
   "scripts": {
+    "build": "rollup -c",
     "lint": "eslint --ext .js ./",
     "fix": "eslint --ext .js ./ --fix"
   },
@@ -31,6 +32,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "rollup": "^2.23.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^7.0.0"
   }
 }
