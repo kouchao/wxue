@@ -26,4 +26,4 @@ export default class Dep {
   }
 }
 
-Dep.activeFun = null
+Dep.target = null

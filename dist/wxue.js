@@ -166,7 +166,7 @@ class Dep {
   }
 }
 
-Dep.activeFun = null;
+Dep.target = null;
 
 // ref
 function reactive (refData) {
