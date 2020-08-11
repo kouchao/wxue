@@ -1,14 +1,8 @@
-# 哈哈
-阿斯顿撒多
-## 大大
-ad阿萨德
-阿萨德
-## asdsa
-- 阿萨德
-- 阿萨德
-- 阿萨德
-- 阿萨德
+---
+sidebar: false
+---
+# weux
+[wxue](https://github.com/kouchao/wxue)，欢迎star~
 
-- [ ] 阿萨德
-- [ ] 阿萨德
-- [x] 阿萨德
+# 指南
+[指南](/guide)
