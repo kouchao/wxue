@@ -7,7 +7,8 @@
     "build": "rollup -c",
     "lint": "eslint --ext .js ./",
     "fix": "eslint --ext .js ./ --fix",
-    "test": "jest"
+    "test": "jest",
+    "dev:docs": "vuepress dev docs"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "wxue",
     "vue"
   ],
+  "files": ["dist"],
   "author": "kouchao",
   "license": "ISC",
   "bugs": {
