@@ -46,5 +46,5 @@ export default (config) => {
     }
   }
 
-  Page(config)
+  return Page(config)
 }

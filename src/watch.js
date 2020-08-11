@@ -32,6 +32,13 @@ export class Watcher {
 }
 
 export function watchEffect (fn) {
+  // 此处应该是个函数 如若不是应该提示
+  if (!fn || !isFun(fn)) {
+    console.warn('watchEffect fn 应该是个函数')
+  }
+  if (fn && !isFun(fn)) {
+    fn = null
+  }
   const watcher = new Watcher(fn)
   watcher.run()
   return watcher.stop.bind(watcher)
