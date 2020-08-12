@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/kouchao/weapp-composition/issues"
   },
-  "homepage": "https://github.com/kouchao/weapp-composition#readme",
+  "homepage": "https://kouchao.github.com/wxue",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
