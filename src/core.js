@@ -1,7 +1,8 @@
-import { isRef, noop, disableEnumerable, isReactive, isFun } from './util'
+import { noop, disableEnumerable, isReactive, isFun } from './util'
 import { setData } from './setData'
 import { resolveHooks, initHooks } from './hooks'
 import { Watcher } from './watch'
+import { unref } from './ref'
 
 export default (config) => {
   if (isFun(config.setup)) {
@@ -22,7 +23,7 @@ export default (config) => {
             value.__dep__.append(watcher)
           }
 
-          setData(page, { [key]: isRef(value) ? value.value : value })
+          setData(page, { [key]: unref(value) })
           return true
         }
       })

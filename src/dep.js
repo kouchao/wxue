@@ -1,4 +1,4 @@
-import { isRef } from './util'
+import { unref } from './ref'
 let uid = 0
 export default class Dep {
   constructor () {
@@ -14,7 +14,7 @@ export default class Dep {
   depend (value) {
     for (let i = 0; i < this.sub.length; i++) {
       const watcher = this.sub[i]
-      watcher.update(isRef(value) ? value.value : value)
+      watcher.update(unref(value))
     }
   }
 

@@ -23,3 +23,8 @@ export function disableEnumerable (obj, keys) {
 export function isFun (fn) {
   return fn && typeof fn === 'function'
 }
+
+// 判断是对象
+export function isObject (obj) {
+  return obj && typeof obj === 'object'
+}
