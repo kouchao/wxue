@@ -15,6 +15,8 @@ module.exports = {
             '/guide/installation',
             '/guide/introduction',
             '/guide/getting-started',
+            '/guide/reactive',
+            '/guide/ref',
           ]
         },
       ]

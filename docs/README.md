@@ -15,3 +15,47 @@ features:
       
 footer: MIT Licensed | Copyright © 2020 kouchao
 ---
+
+## composition-api示例
+```javascript
+import { wxue, ref, onShow } from 'wxue'
+function useAutoAdd(x) {
+  const b = ref(x)
+  setInterval(() => {
+    b.value++
+  }, 1000)
+  return b
+}
+
+wxue({
+  data: {},
+  setup(options) {
+    const b = useAutoAdd(2)
+
+    onShow(() => {
+      console.log('onShow form hooks', this)
+    })
+
+    function getXx() {
+      console.log(this, 'getXx')
+    }
+
+    return {
+      c: b,
+      getXx,
+      test,
+    }
+  },
+  onLoad: function (options) {
+    setTimeout(() => {
+      this.test()
+      console.log(this.data.b)
+    }, 5000)
+    this.getXx()
+  },
+  test: function () {
+    this.data['a.b'] = 111
+    this.data['a.c'] = 111
+  },
+})
+```
