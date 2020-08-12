@@ -1,10 +1,12 @@
 > 跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。
 
 ## 介绍
+<img src="https://github.com/kouchao/wxue/blob/dev/docs/.vuepress/public/logo.png"/>
 
 由于参照`vue`，暂且叫他`wxue`吧，目前的方向还没有定。提供了`vue`的`composition-api`类似的用法。
 
 ## 文档
+查看文档 [https://kouchao.github.io/wxue](https://kouchao.github.io/wxue)
 ### 安装
 ```
 npm i wxue -S
