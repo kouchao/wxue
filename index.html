@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.3">
     
     <meta name="description" content="wxue">
-    <link rel="preload" href="/wxue/assets/css/0.styles.b5d58816.css" as="style"><link rel="preload" href="/wxue/assets/js/app.44108786.js" as="script"><link rel="preload" href="/wxue/assets/js/2.fd6c94de.js" as="script"><link rel="preload" href="/wxue/assets/js/5.bc6e1aa4.js" as="script"><link rel="prefetch" href="/wxue/assets/js/3.d0a9eaf2.js"><link rel="prefetch" href="/wxue/assets/js/4.3b6a7e49.js"><link rel="prefetch" href="/wxue/assets/js/6.885f0477.js"><link rel="prefetch" href="/wxue/assets/js/7.2daec967.js"><link rel="prefetch" href="/wxue/assets/js/8.05940671.js"><link rel="prefetch" href="/wxue/assets/js/9.0a4e4fd8.js">
+    <link rel="preload" href="/wxue/assets/css/0.styles.b5d58816.css" as="style"><link rel="preload" href="/wxue/assets/js/app.4af7188e.js" as="script"><link rel="preload" href="/wxue/assets/js/2.fd6c94de.js" as="script"><link rel="preload" href="/wxue/assets/js/5.b78f3b8b.js" as="script"><link rel="prefetch" href="/wxue/assets/js/10.9d3bfd2f.js"><link rel="prefetch" href="/wxue/assets/js/11.ce31cfe6.js"><link rel="prefetch" href="/wxue/assets/js/3.54d3a012.js"><link rel="prefetch" href="/wxue/assets/js/4.3b6a7e49.js"><link rel="prefetch" href="/wxue/assets/js/6.885f0477.js"><link rel="prefetch" href="/wxue/assets/js/7.53a230f0.js"><link rel="prefetch" href="/wxue/assets/js/8.05940671.js"><link rel="prefetch" href="/wxue/assets/js/9.0a4e4fd8.js">
     <link rel="stylesheet" href="/wxue/assets/css/0.styles.b5d58816.css">
   </head>
   <body>
@@ -29,9 +29,49 @@
       一个小程序的运行时的库
     </p> <p class="action"><a href="/wxue/guide/getting-started.html" class="nav-link action-button">
   快速上手 →
-</a></p></header> <div class="features"><div class="feature"><h2>Vue语法</h2> <p>使得小程序可以使用Vue的语法，共好的开发体验，上手简单，如果你恰好是Vue技术栈，可能10分钟即可上手。</p></div><div class="feature"><h2>体积小</h2> <p>作为一个运行时的库，体积小到可以忽略，借用小程序自带的能力，得很多方法可以直接使用，不需要重复造轮子。</p></div><div class="feature"><h2>优化</h2> <p>在使用Vue语法的同时，优化了小程序的常见性能问题，以及更好的逻辑复用方式。</p></div></div> <div class="theme-default-content custom content__default"></div> <div class="footer">
+</a></p></header> <div class="features"><div class="feature"><h2>Vue语法</h2> <p>使得小程序可以使用Vue的语法，共好的开发体验，上手简单，如果你恰好是Vue技术栈，可能10分钟即可上手。</p></div><div class="feature"><h2>体积小</h2> <p>作为一个运行时的库，体积小到可以忽略，借用小程序自带的能力，得很多方法可以直接使用，不需要重复造轮子。</p></div><div class="feature"><h2>优化</h2> <p>在使用Vue语法的同时，优化了小程序的常见性能问题，以及更好的逻辑复用方式。</p></div></div> <div class="theme-default-content custom content__default"><h2 id="composition-api示例"><a href="#composition-api示例" class="header-anchor">#</a> composition-api示例</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> wxue<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> onShow <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'wxue'</span>
+<span class="token keyword">function</span> <span class="token function">useAutoAdd</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+  <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    b<span class="token punctuation">.</span>value<span class="token operator">++</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> b
+<span class="token punctuation">}</span>
+
+<span class="token function">wxue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token function">useAutoAdd</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onShow form hooks'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">function</span> <span class="token function">getXx</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'getXx'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      c<span class="token operator">:</span> b<span class="token punctuation">,</span>
+      getXx<span class="token punctuation">,</span>
+      test<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onLoad</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>b<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getXx</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">test</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'a.b'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">111</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token string">'a.c'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">111</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <div class="footer">
     MIT Licensed | Copyright © 2020 kouchao
   </div></main></div><div class="global-ui"></div></div>
-    <script src="/wxue/assets/js/app.44108786.js" defer></script><script src="/wxue/assets/js/2.fd6c94de.js" defer></script><script src="/wxue/assets/js/5.bc6e1aa4.js" defer></script>
+    <script src="/wxue/assets/js/app.4af7188e.js" defer></script><script src="/wxue/assets/js/2.fd6c94de.js" defer></script><script src="/wxue/assets/js/5.b78f3b8b.js" defer></script>
   </body>
 </html>
