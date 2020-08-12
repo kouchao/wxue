@@ -1,6 +1,6 @@
 import { noop, disableEnumerable, isReactive, isFun } from './util'
 import { setData } from './setData'
-import { resolveHooks, initHooks } from './hooks'
+import { resolveHooks, initHooks, callHooks } from './hooks'
 import { Watcher } from './watch'
 import { unref } from './ref'
 
@@ -42,6 +42,7 @@ export default (config) => {
       // 禁止枚举
       disableEnumerable(page, ['__res__', '__hooks__'])
 
+      callHooks('onLoad', options, page)
       onLoad = onLoad.bind(page)
       onLoad(options)
     }
