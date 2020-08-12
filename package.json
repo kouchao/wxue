@@ -8,8 +8,8 @@
     "lint": "eslint --ext .js ./",
     "fix": "eslint --ext .js ./ --fix",
     "test": "jest",
-    "dev:docs": "vuepress dev docs",
-    "build:docs": "vuepress build docs"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",

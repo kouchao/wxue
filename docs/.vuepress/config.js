@@ -1,6 +1,7 @@
 module.exports = {
   title: 'wxue',
-  description: 'Just playing around',
+  base: 'wxue',
+  description: 'wxue',
   themeConfig: {
     logo: '/logo.png',
     sidebarDepth: 2,
