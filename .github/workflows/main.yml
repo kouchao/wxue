@@ -16,5 +16,5 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.PAGES_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: docs/.vuepress/dist
+        FOLDER: .
         BUILD_SCRIPT: npm install && npm run docs:build
