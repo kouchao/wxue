@@ -1,5 +1,6 @@
 module.exports = {
   title: 'wxue',
+  base: '/wxue/',
   description: 'wxue',
   themeConfig: {
     logo: '/logo.png',
