@@ -1,4 +1,3 @@
-import { unref } from './ref'
 let uid = 0
 export default class Dep {
   constructor () {
@@ -11,10 +10,10 @@ export default class Dep {
     watcher.append(this)
   }
 
-  depend (value) {
+  depend (obj) {
     for (let i = 0; i < this.sub.length; i++) {
       const watcher = this.sub[i]
-      watcher.update(unref(value))
+      watcher.update(obj)
     }
   }
 

@@ -5,25 +5,24 @@ class WxPage {
     })
     this.data = config.data || {}
     this.html = ''
-    this.render()
-  }
-
-  async render () {
-    return 1
+    this.onRender = config.onRender || (() => {})
   }
 
   setData (data, fn) {
-    this.render().then(() => {
-      fn && fn()
-    })
+    console.log('setData')
+    this.onRender()
+    fn && fn()
   }
 }
 
 function Page (config) {
-  const page = new WxPage(config)
-  page.onLoad()
-  page.onShow()
-  return page
+  return new Promise((resolve) => {
+    const page = new WxPage(config)
+    page.onLoad()
+    page.onShow()
+
+    resolve(page)
+  })
 }
 
 window.Page = Page

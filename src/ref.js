@@ -1,4 +1,4 @@
-import { isRef } from './util'
+import { isRef, disableEnumerable } from './util'
 import { reactive } from './reactive'
 import { Watcher } from './watch'
 // ref
@@ -8,11 +8,12 @@ export function ref (v) {
   }
 
   const refData = {
-    value: v,
-    __isRef__: true
+    value: v
   }
 
   const observed = reactive(refData)
+  observed.__isRef__ = true
+  disableEnumerable(observed, ['__isRef__'])
   return observed
 }
 

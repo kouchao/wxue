@@ -22,8 +22,8 @@ export class Watcher {
     }
   }
 
-  update (value) {
-    this.fn(value)
+  update (obj) {
+    this.fn(obj)
   }
 
   append (dep) {
