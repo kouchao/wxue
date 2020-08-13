@@ -15,8 +15,25 @@ module.exports = {
             '/guide/installation',
             '/guide/introduction',
             '/guide/getting-started',
+            
+          ]
+        },
+        {
+          title: 'composition-api',
+          collapsable: false,
+          children: [
             '/guide/reactive',
             '/guide/ref',
+            '/guide/watch-and-computed',
+            '/guide/hooks',
+          ]
+        },
+        {
+          title: '其他',
+          collapsable: false,
+          children: [
+            '/guide/setData',
+            '/guide/nextTick'
           ]
         },
       ]

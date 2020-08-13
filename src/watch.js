@@ -58,6 +58,7 @@ export function watch (source, fn) {
 }
 
 // TODO: 未支持get和set
+// TODO: 禁止修改computed后的值
 export function computed (fn) {
   const res = ref()
 
