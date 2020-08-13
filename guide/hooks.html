@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>生命周期 | wxue</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content="wxue">
+    <link rel="preload" href="/wxue/assets/css/0.styles.b5d58816.css" as="style"><link rel="preload" href="/wxue/assets/js/app.58633f17.js" as="script"><link rel="preload" href="/wxue/assets/js/2.fd6c94de.js" as="script"><link rel="preload" href="/wxue/assets/js/8.6dab5a70.js" as="script"><link rel="prefetch" href="/wxue/assets/js/10.64aca06a.js"><link rel="prefetch" href="/wxue/assets/js/11.dad22cdf.js"><link rel="prefetch" href="/wxue/assets/js/12.6925c629.js"><link rel="prefetch" href="/wxue/assets/js/13.3df68823.js"><link rel="prefetch" href="/wxue/assets/js/14.146997b9.js"><link rel="prefetch" href="/wxue/assets/js/15.19849b91.js"><link rel="prefetch" href="/wxue/assets/js/3.c15b449a.js"><link rel="prefetch" href="/wxue/assets/js/4.3b6a7e49.js"><link rel="prefetch" href="/wxue/assets/js/5.b78f3b8b.js"><link rel="prefetch" href="/wxue/assets/js/6.885f0477.js"><link rel="prefetch" href="/wxue/assets/js/7.bf44afaf.js"><link rel="prefetch" href="/wxue/assets/js/9.72d5fa2f.js">
+    <link rel="stylesheet" href="/wxue/assets/css/0.styles.b5d58816.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wxue/" class="home-link router-link-active"><img src="/wxue/logo.png" alt="wxue" class="logo"> <span class="site-name can-hide">wxue</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wxue/guide/introduction.html" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/wxue/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="https://github.com/kouchao/wxue" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wxue/guide/introduction.html" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/wxue/api/" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="https://github.com/kouchao/wxue" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wxue/guide/installation.html" class="sidebar-link">安装</a></li><li><a href="/wxue/guide/introduction.html" class="sidebar-link">介绍</a></li><li><a href="/wxue/guide/getting-started.html" class="sidebar-link">快速上手</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>composition-api</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wxue/guide/reactive.html" class="sidebar-link">响应对象</a></li><li><a href="/wxue/guide/ref.html" class="sidebar-link">参考</a></li><li><a href="/wxue/guide/watch-and-computed.html" class="sidebar-link">监听和属性计算</a></li><li><a href="/wxue/guide/hooks.html" aria-current="page" class="active sidebar-link">生命周期</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wxue/guide/setData.html" class="sidebar-link">setData</a></li><li><a href="/wxue/guide/nextTick.html" class="sidebar-link">nextTick</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="生命周期"><a href="#生命周期" class="header-anchor">#</a> 生命周期</h1> <p>支持小程序的所有生命周期</p> <ul><li><code>onLoad</code></li> <li><code>onReady</code></li> <li><code>onShow</code></li> <li><code>onHide</code></li> <li><code>onUnload</code></li> <li><code>onPullDownRefresh</code></li> <li><code>onReachBottom</code></li> <li><code>onShareAppMessage</code></li></ul> <p>先执行<code>setup</code>中的钩子函数，然后再执行配置参数中的钩子函数。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> wxue<span class="token punctuation">,</span> onShow <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'wxue'</span>
+
+<span class="token function">wxue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 1 2</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wxue/guide/watch-and-computed.html" class="prev">
+        监听和属性计算
+      </a></span> <span class="next"><a href="/wxue/guide/setData.html">
+        setData
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wxue/assets/js/app.58633f17.js" defer></script><script src="/wxue/assets/js/2.fd6c94de.js" defer></script><script src="/wxue/assets/js/8.6dab5a70.js" defer></script>
+  </body>
+</html>
