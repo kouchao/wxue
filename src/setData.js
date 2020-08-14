@@ -32,7 +32,7 @@ export function setData (page, data) {
 export const nextTick = (fn) => {
   return new Promise((resolve) => {
     nextTickResolve = () => {
-      fn()
+      fn && fn()
       resolve()
     }
   })

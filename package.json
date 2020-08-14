@@ -1,12 +1,15 @@
 {
   "name": "wxue",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
   "main": "dist/wxue.min.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --ext .js ./",
-    "fix": "eslint --ext .js ./ --fix"
+    "fix": "eslint --ext .js ./ --fix",
+    "test": "jest",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -17,15 +20,21 @@
     "wxue",
     "vue"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "kouchao",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kouchao/weapp-composition/issues"
   },
-  "homepage": "https://github.com/kouchao/weapp-composition#readme",
+  "homepage": "https://kouchao.github.com/wxue",
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-angular": "^9.1.1",
+    "babel-jest": "^26.3.0",
     "eslint": "^7.6.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
@@ -33,8 +42,13 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
+    "jest": "^26.3.0",
     "rollup": "^2.23.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-terser": "^7.0.0"
+    "rollup-plugin-terser": "^7.0.0",
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.0.0-rc.5"
   }
 }

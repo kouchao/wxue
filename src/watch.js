@@ -1,70 +1,69 @@
-import { ref } from './ref'
-import Dep from './dep'
-import { noop, isFun } from './util'
-let uid = 0
-export class Watcher {
-  constructor (fn) {
-    this.deps = []
-    this.uid = ++uid
-    this.fn = fn || noop
-  }
+import { effect, isRef } from './reactive'
+import { isFun, noop, isArray } from './util'
 
-  run () {
-    Dep.target = this
-    const res = this.fn()
-    Dep.target = null
-    return res
-  }
-
-  stop () {
-    for (let i = 0; i < this.deps.length; i++) {
-      this.deps[i].remove(this)
+export function stop (effect) {
+  if (effect.active) {
+    cleanup(effect)
+    if (effect.options.onStop) {
+      effect.options.onStop()
     }
+    effect.active = false
   }
+}
 
-  update (value) {
-    this.fn(value)
-  }
-
-  append (dep) {
-    this.deps.push(dep)
+function cleanup (effect) {
+  const { deps } = effect
+  if (deps.length) {
+    for (let i = 0; i < deps.length; i++) {
+      deps[i].delete(effect)
+    }
+    deps.length = 0
   }
 }
 
 export function watchEffect (fn) {
-  const watcher = new Watcher(fn)
-  watcher.run()
-  return watcher.stop.bind(watcher)
+  // 此处应该是个函数 如若不是应该提示
+  if (!fn || !isFun(fn)) {
+    console.warn('watchEffect fn 应该是个函数')
+  }
+  if (fn && !isFun(fn)) {
+    fn = null
+  }
+
+  const runner = effect(fn)
+
+  return () => {
+    stop(runner)
+  }
 }
 
-// TODO: 未支持多个来源
-export function watch (source, fn) {
-  let preSource
-  const stop = watchEffect((v) => {
+export function watch (source, cb) {
+  let preSource = isArray(source) ? source.map(() => undefined) : undefined
+  const stop = watchEffect(() => {
     const res = resolveSourceFun(source)
-    if (v) {
-      fn(v, preSource)
+    if (res) {
+      cb(res, preSource)
     }
     preSource = res
   })
   return stop
 }
 
-// TODO: 未支持get和set
-export function computed (fn) {
-  const res = ref()
-
-  const watcher = new Watcher(function () {
-    res.value = fn()
-  })
-  watcher.run()
-  return res
-}
-
 // 转换为函数形式
 function resolveSourceFun (source) {
-  if (isFun(source)) {
-    return source()
+  let getter = noop
+  if (isRef(source)) {
+    getter = () => source.value
+  } else if (isFun(source)) {
+    getter = () => source()
+  } else if (isArray(source)) {
+    getter = () => source.map(s => {
+      if (isRef(s)) {
+        return s.value
+      } else if (isFun(s)) {
+        return s()
+      }
+    })
   }
-  return source.value
+  return getter()
 }

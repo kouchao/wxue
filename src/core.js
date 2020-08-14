@@ -1,50 +1,53 @@
-import { isRef, noop, disableEnumerable, isReactive, isFun } from './util'
+import { noop, isFun, forEach, isObject } from './util'
 import { setData } from './setData'
-import { resolveHooks, initHooks } from './hooks'
-import { Watcher } from './watch'
+import { resolveHooks, initHooks, callHooks } from './hooks'
+import { isRef, toRaw, effect, unref } from './reactive'
 
 export default (config) => {
   if (isFun(config.setup)) {
     let onLoad = config.onLoad || noop
+
     resolveHooks(config)
+
     config.onLoad = function (options) {
-      const page = this
-      // TODO: 未支持原始数据的getter setter
-      const configProxy = new Proxy(page.data, {
-        get (target, key) {
-          return target[key]
-        },
-        set (target, key, value) {
-          if (isReactive(value)) {
-            const watcher = new Watcher((v) => {
-              setData(page, { [key]: v })
-            })
-            value.__dep__.append(watcher)
-          }
+      initHooks(this)
+      handleSetup(this, options)
 
-          setData(page, { [key]: isRef(value) ? value.value : value })
-          return true
-        }
-      })
-      page.data = configProxy
-      initHooks(page)
-      page.__res__ = page.setup(options) || {}
-      for (const key in page.__res__) {
-        const item = page.__res__[key]
-        if (typeof item === 'function') {
-          page[key] = item
-        } else {
-          page.data[key] = item
-        }
-      }
+      callHooks('onLoad', options, this)
 
-      // 禁止枚举
-      disableEnumerable(page, ['__res__', '__hooks__'])
-
-      onLoad = onLoad.bind(page)
+      // 调用原始的onLoad
+      onLoad = onLoad.bind(this)
       onLoad(options)
     }
   }
 
-  Page(config)
+  return Page(config)
+}
+
+function handleSetup (page, options) {
+  const setupRes = page.setup(options) || {}
+  const data = {}
+  forEach(setupRes, (item, key) => {
+    if (isFun(item)) {
+      page[key] = item
+    } else {
+      data[key] = item
+    }
+  })
+  runEffect(page, data)
+}
+
+function runEffect (page, data, key) {
+  forEach(data, (item, k) => {
+    const resKey = key ? key + '.' + k : k
+    if (isObject(item) && !isRef(item)) {
+      runEffect(page, item, resKey)
+    }
+    effect(() => {
+      const item = data[k]
+      const key = isRef(item) ? resKey : resKey
+      const value = isRef(item) ? unref(item) : toRaw(item)
+      setData(page, { [key]: value })
+    })
+  })
 }

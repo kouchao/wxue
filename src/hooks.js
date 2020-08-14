@@ -1,3 +1,5 @@
+import { noop, disableEnumerable } from './util'
+
 const hooks = [
   'onLoad',
   'onReady',
@@ -12,7 +14,7 @@ let page = null
 // 初始化hooks
 export function resolveHooks (config) {
   hooks.forEach((name) => {
-    const hook = config[name]
+    const hook = config[name] || noop
     config[name] = function (options) {
       callHooks(name, options, this)
       hook(options)
@@ -33,6 +35,8 @@ export function callHooks (name, options, page) {
 export function initHooks (ctx) {
   page = ctx
   page.__hooks__ = {} // 用于存放hooks
+
+  disableEnumerable(page, ['__hooks__'])
 
   hooks.forEach((name) => {
     page.__hooks__[name] = []
