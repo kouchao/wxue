@@ -1,10 +1,5 @@
 export function noop () {}
 
-// 判断是否是ref对象
-export function isRef (obj) {
-  return typeof obj === 'object' && obj.__isRef__
-}
-
 // 变为不可枚举
 export function disableEnumerable (obj, keys) {
   keys.forEach(key => {
@@ -38,27 +33,4 @@ export function forEach (obj, fn) {
       fn(obj[key], key)
     })
   }
-}
-
-// 克隆对象
-let max = 100
-export function clone (obj) {
-  if (max-- === 0) {
-    return
-  }
-  let res
-  if (isArray(obj)) {
-    res = []
-    forEach(obj, (item, key) => {
-      res[key] = clone(item)
-    })
-  } else if (isObject(obj)) {
-    res = {}
-    forEach(obj, (item, key) => {
-      res[key] = clone(item)
-    })
-  } else {
-    res = obj
-  }
-  return res
 }
