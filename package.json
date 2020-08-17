@@ -1,6 +1,6 @@
 {
   "name": "wxue",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
   "main": "dist/wxue.min.js",
   "scripts": {
