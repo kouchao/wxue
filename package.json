@@ -1,6 +1,6 @@
 {
   "name": "wxue",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "跟 vue 的 composition-api 类似，小程序端的逻辑复用的解决方案。",
   "main": "dist/wxue.min.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.11.0",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-angular": "^9.1.1",
+    "@rollup/plugin-inject": "^4.0.2",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "babel-jest": "^26.3.0",
     "eslint": "^7.6.0",
