@@ -1,11 +1,10 @@
-name: docs build and deploy
+name: build docs
+
 on:
   push:
-    branches:
-      - dev
-  pull_request:
-    branches:
-      - dev
+    tags:
+      - 'v*'
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
