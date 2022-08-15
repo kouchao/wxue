@@ -1,4 +1,5 @@
 module.exports = {
   setupFiles: ['<rootDir>/env/page.js'],
-  collectCoverage: true
+  collectCoverage: true,
+  testEnvironment: 'jsdom'
 }

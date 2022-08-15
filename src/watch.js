@@ -1,43 +1,21 @@
-import { effect, isRef } from './reactive'
+import { ReactiveEffect, isRef } from './reactive'
 import { isFun, noop, isArray } from './util'
 
-export function stop (effect) {
-  if (effect.active) {
-    cleanup(effect)
-    if (effect.options.onStop) {
-      effect.options.onStop()
-    }
-    effect.active = false
-  }
-}
-
-function cleanup (effect) {
-  const { deps } = effect
-  if (deps.length) {
-    for (let i = 0; i < deps.length; i++) {
-      deps[i].delete(effect)
-    }
-    deps.length = 0
-  }
-}
-
-export function watchEffect (fn) {
+export function watchEffect(fn) {
   // 此处应该是个函数 如若不是应该提示
-  if (!fn || !isFun(fn)) {
+  if (!isFun(fn)) {
     console.warn('watchEffect fn 应该是个函数')
-  }
-  if (fn && !isFun(fn)) {
-    fn = null
+    return
   }
 
-  const runner = effect(fn)
-
+  const effect = new ReactiveEffect(fn)
+  effect.run()
   return () => {
-    stop(runner)
+    effect.stop()
   }
 }
 
-export function watch (source, cb) {
+export function watch(source, cb) {
   let preSource = isArray(source) ? source.map(() => undefined) : undefined
   const stop = watchEffect(() => {
     const res = resolveSourceFun(source)
@@ -50,20 +28,21 @@ export function watch (source, cb) {
 }
 
 // 转换为函数形式
-function resolveSourceFun (source) {
+function resolveSourceFun(source) {
   let getter = noop
   if (isRef(source)) {
     getter = () => source.value
   } else if (isFun(source)) {
     getter = () => source()
   } else if (isArray(source)) {
-    getter = () => source.map(s => {
-      if (isRef(s)) {
-        return s.value
-      } else if (isFun(s)) {
-        return s()
-      }
-    })
+    getter = () =>
+      source.map((s) => {
+        if (isRef(s)) {
+          return s.value
+        } else if (isFun(s)) {
+          return s()
+        }
+      })
   }
   return getter()
 }

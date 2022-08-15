@@ -1,4 +1,4 @@
-import { wxue, ref, unref, toRef, toRefs, reactive } from '../src'
+import { wxue, ref, unref, toRef, toRefs, reactive, isRef } from '../src'
 describe('ref', () => {
   test('ref', () => {
     wxue({
@@ -6,7 +6,7 @@ describe('ref', () => {
         const x = ref(1)
         const y = ref(x)
         x.value++
-        expect(x.__isRef__).toEqual(true)
+        expect(isRef(x)).toEqual(true)
         expect(x.value).toEqual(2)
         expect(y).toEqual(x)
         return { x }
@@ -31,7 +31,7 @@ describe('ref', () => {
       setup () {
         const test = reactive({ x: 1 })
         const x = toRef(test, 'x')
-        expect(x.__isRef__).toEqual(true)
+        expect(isRef(x)).toEqual(true)
         expect(x.value).toEqual(test.x)
         return { x }
       }
@@ -43,7 +43,7 @@ describe('ref', () => {
       setup () {
         const test = reactive({ x: 1 })
         const { x } = toRefs(test)
-        expect(x.__isRef__).toEqual(true)
+        expect(isRef(x)).toEqual(true)
         expect(x.value).toEqual(test.x)
         return { x }
       }

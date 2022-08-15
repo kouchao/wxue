@@ -22,5 +22,6 @@ export {
   toRaw,
   computed,
   // 私有
-  effect
+  effect,
+  ReactiveEffect,
 } from '@vue/reactivity'
