@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    paths:
+      - 'docs/**'
 
 jobs:
   build-and-deploy:
